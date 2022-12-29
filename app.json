@@ -28,6 +28,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "380a2c5d-653a-4a38-8834-af658fe368a6"
+      }
+    },
+    "owner": "jeremy-kr"
   }
 }

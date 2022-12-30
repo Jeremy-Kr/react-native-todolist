@@ -2,12 +2,16 @@ import { Text, TouchableOpacity, View } from "react-native";
 import styles from "../styles";
 import CategoryButton from "./CategoryButton";
 
-const Category = () => {
+const Category = ({ categoryList, category, setCategory }) => {
   return (
     <View style={styles.buttonContainer}>
-      <CategoryButton text="JavaScript" onSelected={true} />
-      <CategoryButton text="React" onSelected={false} />
-      <CategoryButton text="Coding Test" onSelected={false} />
+      {categoryList.map((item) => (
+        <CategoryButton
+          text={item}
+          onSelected={category === item}
+          setCategory={setCategory}
+        />
+      ))}
     </View>
   );
 };

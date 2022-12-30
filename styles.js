@@ -61,6 +61,9 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     width: "25%",
   },
+  isDone: {
+    textDecorationLine: "line-through",
+  },
 });
 
 export default styles;

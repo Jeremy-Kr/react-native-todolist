@@ -1,14 +1,14 @@
 import { Text, TouchableOpacity } from "react-native";
 import styles from "../styles";
 
-const CategoryButton = ({ text, onSelected }) => {
+const CategoryButton = ({ text, onSelected, setCategory }) => {
   return (
     <TouchableOpacity
       style={
         onSelected ? [styles.button, styles.buttonOnActive] : styles.button
       }
       onPress={() => {
-        alert("뻣은");
+        setCategory(text);
       }}
     >
       <Text>{text}</Text>

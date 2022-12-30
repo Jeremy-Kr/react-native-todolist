@@ -64,6 +64,12 @@ const styles = StyleSheet.create({
   isDone: {
     textDecorationLine: "line-through",
   },
+  textInputInEditing: {
+    width: "70%",
+    height: "60%",
+    paddingHorizontal: 10,
+    borderWidth: 0.5,
+  },
 });
 
 export default styles;

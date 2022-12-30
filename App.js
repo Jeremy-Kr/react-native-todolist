@@ -14,15 +14,7 @@ const App = () => {
     "codingTest",
   ]);
   const [category, setCategory] = useState("javascript");
-  const [todoList, setTodoList] = useState([
-    {
-      id: Date.now(),
-      content: "재미없는 리액트 네이티브",
-      isDone: false,
-      isEditing: false,
-      category,
-    },
-  ]);
+  const [todoList, setTodoList] = useState([]);
 
   return (
     <SafeAreaView style={styles.container}>

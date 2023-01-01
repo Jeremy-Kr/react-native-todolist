@@ -1,34 +1,31 @@
 import { useState } from "react";
 import { View, TextInput } from "react-native";
 import styles from "../styles";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "../firebase";
 
-const TodoInput = ({ setTodoList, category }) => {
+const TodoInput = ({ category }) => {
   const [text, setText] = useState("");
   const handleOnChange = (e) => {
     setText(e.nativeEvent.text);
   };
 
-  const handleOnSubmitEditing = (e) => {
-    setTodoList((prev) => {
-      return [
-        ...prev,
-        {
-          id: Date.now(),
-          content: text,
-          isDone: false,
-          isEditing: false,
-          category,
-        },
-      ];
-    });
+  const handleOnSubmitEditing = () => {
+    const newTodo = {
+      content: text,
+      isDone: false,
+      isEditing: false,
+      category,
+    };
+    addDoc(collection(db, "todoList"), newTodo);
     setText("");
   };
   return (
     <View style={styles.inputContainer}>
       <View style={styles.hr} />
       <TextInput
-        onSubmitEditing={(e) => {
-          handleOnSubmitEditing(e);
+        onSubmitEditing={() => {
+          handleOnSubmitEditing();
         }}
         value={text}
         onChange={(e) => {

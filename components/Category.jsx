@@ -10,6 +10,7 @@ const Category = ({ categoryList, category, setCategory }) => {
           text={item}
           onSelected={category === item}
           setCategory={setCategory}
+          ket={item}
         />
       ))}
     </View>

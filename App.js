@@ -14,7 +14,6 @@ const App = () => {
     "codingTest",
   ]);
   const [category, setCategory] = useState("javascript");
-  const [todoList, setTodoList] = useState([]);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -24,12 +23,8 @@ const App = () => {
         category={category}
         setCategory={setCategory}
       />
-      <TodoInput category={category} setTodoList={setTodoList} />
-      <TodoContainer
-        category={category}
-        todoList={todoList}
-        setTodoList={setTodoList}
-      />
+      <TodoInput category={category} />
+      <TodoContainer category={category} />
     </SafeAreaView>
   );
 };

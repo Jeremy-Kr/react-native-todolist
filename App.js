@@ -8,7 +8,7 @@ import TodoContainer from "./components/TodoContainer";
 import { useState } from "react";
 
 const App = () => {
-  const [categoryList, setCategoryList] = useState([
+  const [categoryList] = useState([
     "javascript",
     "react",
     "codingTest",

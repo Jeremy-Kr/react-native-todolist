@@ -2,38 +2,33 @@ import { View, Text, TouchableOpacity, TextInput } from "react-native";
 import { AntDesign, FontAwesome, Feather } from "@expo/vector-icons";
 import styles from "../styles";
 import { useState } from "react";
+import { deleteDoc, doc, updateDoc } from "firebase/firestore";
+import { db } from "../firebase";
 
-const TodoItem = ({ todoList, item, setTodoList }) => {
-  const [newTodoContent, setNewTodoContent] = useState();
+const TodoItem = ({ item }) => {
+  const [newTodoContent, setNewTodoContent] = useState(item.content);
 
-  const handleOnTogglePress = () => {
-    const newTodoList = [...todoList];
-    const idx = newTodoList.findIndex((todo) => todo.id === item.id);
-    newTodoList[idx].isDone = !newTodoList[idx].isDone;
-    setTodoList(newTodoList);
+  const handleOnTogglePress = async () => {
+    const itemRef = doc(db, "todoList", `${item.id}`);
+    await updateDoc(itemRef, { isDone: !item.isDone });
   };
 
-  const handleOnDeletePress = () => {
-    const newTodoList = todoList.filter((todo) => todo.id !== item.id);
-    setTodoList(newTodoList);
+  const handleOnDeletePress = async () => {
+    await deleteDoc(doc(db, "todoList", `${item.id}`));
   };
 
-  const handleOnEditPress = () => {
-    const newTodoList = [...todoList];
-    const idx = newTodoList.findIndex((todo) => todo.id === item.id);
-    newTodoList[idx].isEditing = !newTodoList[idx].isEditing;
-    setTodoList(newTodoList);
+  const handleOnEditPress = async () => {
+    const itemRef = doc(db, "todoList", `${item.id}`);
+    await updateDoc(itemRef, { isEditing: !item.isEditing });
   };
 
   const handleOnChange = (e) => {
     setNewTodoContent(e);
   };
 
-  const handleOnSubmitEditing = () => {
-    const newTodoList = [...todoList];
-    const idx = newTodoList.findIndex((todo) => todo.id === item.id);
-    newTodoList[idx].content = newTodoContent;
-    setTodoList(newTodoList);
+  const handleOnSubmitEditing = async () => {
+    const itemRef = doc(db, "todoList", `${item.id}`);
+    await updateDoc(itemRef, { content: newTodoContent });
     handleOnEditPress();
   };
 

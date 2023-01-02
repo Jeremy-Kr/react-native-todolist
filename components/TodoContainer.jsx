@@ -1,11 +1,11 @@
-import { collection, orderBy, query, where, getDocs } from "firebase/firestore";
+import { collection, query, where, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { ScrollView, View } from "react-native";
 import { db } from "../firebase";
 import styles from "../styles";
 import TodoItem from "./TodoItem";
 
-const TodoContainer = ({ todoList, category, setTodoList }) => {
+const TodoContainer = ({ category }) => {
   const [selectedTodoList, setSelectedTodoList] = useState();
 
   useEffect(() => {
@@ -35,7 +35,12 @@ const TodoContainer = ({ todoList, category, setTodoList }) => {
     <ScrollView style={styles.todoScrollView}>
       <View>
         {selectedTodoList?.map((item) => (
-          <TodoItem item={item} key={item.id} />
+          <TodoItem
+            item={item}
+            key={item.id}
+            selectedTodoList={selectedTodoList}
+            setSelectedTodoList={setSelectedTodoList}
+          />
         ))}
       </View>
     </ScrollView>
